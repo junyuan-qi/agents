@@ -1,4 +1,4 @@
-[Agents Repository]
+# Agents
 
 This repository is dedicated to developing and experimenting with multiple personal agents to assist with various tasks. The goal is to create, test, and compare different agent frameworks and implementations for productivity, creativity, and personal management.
 
@@ -38,4 +38,3 @@ Feel free to suggest new agent ideas, frameworks, or improvements via issues or 
 ## License
 
 [MIT License](LICENSE)
-# agents
