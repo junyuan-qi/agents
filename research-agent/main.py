@@ -1,3 +1,4 @@
+import asyncio
 import os
 import time
 from typing import Any
@@ -5,6 +6,10 @@ from typing import Any
 from agents import Agent, Runner, function_tool
 from dotenv import load_dotenv
 from exa_py import Exa
+from rich.console import Console
+from rich.markdown import Markdown
+from rich.panel import Panel
+from rich.prompt import Prompt
 
 # Load environment variables
 load_dotenv('../.env')
@@ -20,18 +25,41 @@ def exa_web_search(query: str) -> Any:
     return exa.search_and_contents(query=query, type='auto', highlights=True)
 
 
-# Create research agent with web search capabilities
-agent = Agent(
-    name="Research Assistant",
-    instructions=(
-        f"You are a helpful research assistant that can search the web for "
-        f"information using the exa_web_search tool when needed. "
-        f"Current date and time: {current_datetime}"
-    ),
-    tools=[exa_web_search]
-)
+async def main() -> None:
+    console = Console()
+
+    # Display welcome message
+    console.print(Panel.fit(
+        "[bold blue]Research Assistant[/bold blue]\n"
+        "Powered by Exa Search API",
+        title="🔍 Welcome"
+    ))
+
+    query = Prompt.ask("\n[bold cyan]Enter your research query[/bold cyan]")
+
+    # Create research agent with web search capabilities
+    agent = Agent(
+        name="Research Assistant",
+        instructions=(
+            f"You are a helpful research assistant that can search the web for "
+            f"information using the exa_web_search tool when needed. "
+            f"Provide comprehensive, well-structured responses in markdown format. "
+            f"Current date and time: {current_datetime}"
+        ),
+        tools=[exa_web_search]
+    )
+
+    # Show processing message
+    with console.status("[bold green]Researching your query...", spinner="dots"):
+        result = await Runner.run(agent, query)
+
+    # Display results with rich formatting
+    console.print(Panel.fit(
+        Markdown(result.final_output),
+        title="Research Results",
+        border_style="green"
+    ))
 
 
-# Run the agent
-result = Runner.run_sync(agent, "Today's top news headlines of China")
-print(result.final_output)
+if __name__ == "__main__":
+    asyncio.run(main())
