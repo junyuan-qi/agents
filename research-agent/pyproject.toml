@@ -1,0 +1,32 @@
+[project]
+name = "research-agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "exa-py>=1.15.4",
+    "openai-agents>=0.2.11",
+    "python-dotenv>=1.1.1",
+    "socksio>=1.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.12.12",
+    "mypy>=1.17.1",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "N", "UP", "S", "B", "A", "C4", "PIE", "SIM"]
+ignore = ["S101"]  # Allow assert statements
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
