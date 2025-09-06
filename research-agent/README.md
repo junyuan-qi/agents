@@ -1,6 +1,7 @@
 # Research Agent
 
 A Python research assistant agent that can search the web for information using the Exa search API and OpenAI agents framework.
+The assistant conducts multi-round searches to deepen its understanding and returns results in Chinese.
 
 ## Overview
 
@@ -47,11 +48,7 @@ Run the research agent:
 uv run python main.py
 ```
 
-The agent will search for "Today's top news headlines of China" by default. You can modify the query in `main.py`:
-
-```python
-result = Runner.run_sync(agent, "Your research query here")
-```
+You will be prompted for a query, and the assistant will perform several rounds of web search before summarizing the findings in Chinese.
 
 ### Example Output
 
