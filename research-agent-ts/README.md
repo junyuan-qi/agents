@@ -1,20 +1,22 @@
 # Research Agent (TypeScript)
 
-A TypeScript reimplementation of the Python research agent using the OpenAI Agents JS SDK and Exa search. The assistant performs web searches and synthesizes results in Chinese.
+A TypeScript reimplementation of the Python research agent using the official `@openai/agents` SDK and Exa search. Provides a simple CLI chat interface; the agent searches the web and replies in Chinese.
 
 ## Prerequisites
 
-- Node.js 18+
+- Node.js 22+
 - pnpm 9+
 - OpenAI API key (`OPENAI_API_KEY`)
 - Exa API key (`EXA_API_KEY`)
 
-Use the existing repo-level `.env` (copy from `.env.example` if needed) and add:
+Use the repo-level `.env` (copy from `.env.example` if needed) and add:
 
 ```
 OPENAI_API_KEY=...
 EXA_API_KEY=...
 ```
+
+The app loads `../.env` relative to `research-agent-ts/src` so it reuses the repo root `.env`.
 
 ## Install
 
@@ -23,13 +25,15 @@ cd research-agent-ts
 pnpm install
 ```
 
-## Run (dev)
+## Run (chat CLI)
 
 ```bash
 pnpm dev
 ```
 
-You’ll get an interactive prompt. Type a query in English; the agent will use the `exa_web_search` tool and respond in Chinese.
+- You’ll see a prompt like: `Research Assistant chat. Type empty line to exit.`
+- Type your message (English queries recommended for search); the agent replies in Chinese.
+- Press Enter on an empty line to exit.
 
 ## Build
 
@@ -43,12 +47,9 @@ pnpm start
 ```
 research-agent-ts/
 ├── src/
-│   ├── index.ts            # CLI runner and agent wiring
-│   ├── instructions.md     # System instruction template
-│   └── tools/
-│       └── exa.ts          # Exa web search tool (def + impl)
+│   ├── index.ts          # CLI chat; Agent + Exa tool
+│   └── instructions.md   # System instructions template (Chinese output)
 ├── tsconfig.json
 ├── package.json
 └── README.md
 ```
-
