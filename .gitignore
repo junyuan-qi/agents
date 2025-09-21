@@ -71,3 +71,9 @@ htmlcov/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
+# Node / TypeScript
+node_modules/
+**/node_modules/
+dist/
+*.tsbuildinfo
