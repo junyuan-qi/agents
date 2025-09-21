@@ -11,11 +11,12 @@ This repository is dedicated to developing and experimenting with multiple perso
 
 ## Agent Frameworks
 
-This repository may include agents built with different frameworks, such as:
-- [LangChain](https://github.com/langchain-ai/langchain)
-- [AutoGen](https://github.com/microsoft/autogen)
-- [Haystack](https://github.com/deepset-ai/haystack)
-- Custom or experimental frameworks
+Both agents run on the OpenAI Agent SDK, giving them a shared runtime for
+tooling, memory, and safety policies. `research-agent` (Python) wires the SDK
+into a CLI loop with project-specific prompts, and `research-agent-ts`
+implements the same flow in TypeScript for parity. We plan to evaluate other
+frameworks (LangChain, AutoGen, Haystack, etc.) alongside the SDK in future
+experiments.
 
 ## Repository Structure
 
